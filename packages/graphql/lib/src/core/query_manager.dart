@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:graphql/client.dart';
 import 'package:meta/meta.dart';
 import 'package:collection/collection.dart';
 
@@ -448,6 +449,8 @@ class QueryManager {
     BaseOptions options, {
     @required QueryResultSource source,
   }) {
+    Context responsecontext = response.context;
+
     List<GraphQLError> errors;
     dynamic data;
 
@@ -478,6 +481,7 @@ class QueryManager {
     return QueryResult(
       data: data,
       source: source,
+      context: responsecontext,
       exception: coalesceErrors(graphqlErrors: errors),
     );
   }

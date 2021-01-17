@@ -1,4 +1,5 @@
 import 'dart:async' show FutureOr;
+import 'package:graphql/src/core/core.dart';
 import 'package:graphql/src/exceptions.dart';
 import 'package:meta/meta.dart';
 
@@ -64,6 +65,7 @@ class QueryResult {
     this.data,
     this.exception,
     @required this.source,
+    this.context,
   }) : timestamp = DateTime.now();
 
   /// An empty result. Can be used as a placeholder when an operation
@@ -98,6 +100,8 @@ class QueryResult {
   Map<String, dynamic> data;
 
   OperationException exception;
+
+  Context context;
 
   /// [data] has yet to be specified from any source
   /// for the _most recent_ operation
